@@ -3,8 +3,32 @@ import "./style.css";
 import "./assets/img/4geeks.ico";
 
 window.onload = function() {
-  //write your code here
   generateCard();
+
+  const widthInput = document.getElementById("width");
+  const heightInput = document.getElementById("height");
+
+  widthInput.value = document.getElementById("card").offsetWidth;
+  widthInput.addEventListener("change", e => {
+    const width = e.target.value;
+    const card = document.getElementById("card");
+    if (parseInt(width) >= 320) {
+      card.style.height = "auto";
+      card.style.width = width + "px";
+      heightInput.value = card.offsetHeight;
+    } else e.target.value = card.offsetWidth;
+  });
+
+  heightInput.value = document.getElementById("card").offsetHeight;
+  heightInput.addEventListener("change", e => {
+    const height = e.target.value;
+    const card = document.getElementById("card");
+    if (parseInt(height) >= 480) {
+      card.style.width = "auto";
+      card.style.height = height + "px";
+      widthInput.value = card.offsetWidth;
+    } else e.target.value = card.offsetHeight;
+  });
 
   document
     .getElementById("generatorButton")
